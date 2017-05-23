@@ -78,6 +78,10 @@ $("#motor1-forward").click(function(){
 
 
 $("#motor2-backward").click(function(){
+    $("#motor1-forward").attr("class", "btn btn-primary");
+    $("#motor2-forward").attr("class", "btn btn-primary");
+    $("#motor1-backward").attr("class", "btn btn-primary");
+    $("#motor2-backward").attr("class", "btn btn-primary");
     if(motor2 == 0)
     {
         $("#motor2-backward").attr("class", "btn btn-success");
@@ -86,20 +90,22 @@ $("#motor2-backward").click(function(){
     }
     else if(motor2 == -1)
     {
-        $("#motor2-backward").attr("class", "btn btn-primary");
         socket.emit('motor2', "0");
         motor2 = 0;
     }
     else if(motor2 == 1)
     {
          $("#motor2-backward").attr("class", "btn btn-success");
-         $("#motor2-forward").attr("class", "btn btn-primary");
          socket.emit('motor2', "-1");
          motor2 = -1;
     }
 });
 
 $("#motor2-forward").click(function(){
+    $("#motor1-forward").attr("class", "btn btn-primary");
+    $("#motor2-forward").attr("class", "btn btn-primary");
+    $("#motor1-backward").attr("class", "btn btn-primary");
+    $("#motor2-backward").attr("class", "btn btn-primary");
     if(motor2 == 0)
     {
         $("#motor2-forward").attr("class", "btn btn-success");
@@ -108,14 +114,12 @@ $("#motor2-forward").click(function(){
     }
     else if(motor2 == 1)
     {
-        $("#motor2-forward").attr("class", "btn btn-primary");
         socket.emit('motor2', "0");
         motor2 = 0;
     }
     else if(motor2 == -1)
     {
         $("#motor2-forward").attr("class", "btn btn-success");
-        $("#motor2-backward").attr("class", "btn btn-primary");
         socket.emit('motor2', "1");
         motor2 = 1;
     }
