@@ -29,6 +29,8 @@ var motor2 = 0;
 var socket = io();
 
 $("#motor1-backward").click(function(){
+    $("#motor1-forward").attr("class", "btn btn-primary");
+    $("#motor2-forward").attr("class", "btn btn-primary");
     $("#motor1-backward").attr("class", "btn btn-primary");
     $("#motor2-backward").attr("class", "btn btn-primary");
     if(motor1 == 0)
@@ -51,6 +53,8 @@ $("#motor1-backward").click(function(){
 });
 
 $("#motor1-forward").click(function(){
+    $("#motor1-forward").attr("class", "btn btn-primary");
+    $("#motor2-forward").attr("class", "btn btn-primary");
     $("#motor1-backward").attr("class", "btn btn-primary");
     $("#motor2-backward").attr("class", "btn btn-primary");
     if(motor1 == 0)
