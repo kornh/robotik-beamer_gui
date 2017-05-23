@@ -1,15 +1,31 @@
-<button id="motor1-backward" type="button" class="btn btn-primary">
-    <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
-</button>
+<div>
+    <button id="motor1-backward" type="button" class="btn btn-primary">
+        <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+    </button>
 
-<span class="btn btn-primary" aria-hidden="true">Motor 1</span>
+    <span class="btn btn-primary" aria-hidden="true">Motor 1</span>
 
-<button id="motor1-forward" type="button" class="btn btn-primary">
-    <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
-</button>
+    <button id="motor1-forward" type="button" class="btn btn-primary">
+        <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+    </button>
+</div>
 
+</br>
+
+<div>
+    <button id="motor2-backward" type="button" class="btn btn-primary">
+        <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+    </button>
+
+    <span class="btn btn-primary" aria-hidden="true">Motor 2</span>
+
+    <button id="motor2-forward" type="button" class="btn btn-primary">
+        <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+    </button>
+</div>
 <script>
 var motor1 = 0;
+var motor2 = 0;
 var socket = io();
 
 $("#motor1-backward").click(function(){
@@ -55,4 +71,50 @@ $("#motor1-forward").click(function(){
         motor1 = 1;
     }
 });
+
+
+$("#motor2-backward").click(function(){
+    if(motor2 == 0)
+    {
+        $("#motor2-backward").attr("class", "btn btn-success");
+        socket.emit('motor2', "-1");
+        motor2 = -1;
+    }
+    else if(motor2 == -1)
+    {
+        $("#motor2-backward").attr("class", "btn btn-primary");
+        socket.emit('motor2', "0");
+        motor2 = 0;
+    }
+    else if(motor2 == 1)
+    {
+         $("#motor2-backward").attr("class", "btn btn-success");
+         $("#motor2-forward").attr("class", "btn btn-primary");
+         socket.emit('motor2', "-1");
+         motor2 = -1;
+    }
+});
+
+$("#motor2-forward").click(function(){
+    if(motor2 == 0)
+    {
+        $("#motor2-forward").attr("class", "btn btn-success");
+        socket.emit('motor2', "1");
+        motor2 = 1;
+    }
+    else if(motor2 == 1)
+    {
+        $("#motor2-forward").attr("class", "btn btn-primary");
+        socket.emit('motor2', "0");
+        motor2 = 0;
+    }
+    else if(motor2 == -1)
+    {
+        $("#motor2-forward").attr("class", "btn btn-success");
+        $("#motor2-backward").attr("class", "btn btn-primary");
+        socket.emit('motor2', "1");
+        motor2 = 1;
+    }
+});
+
 </script>
